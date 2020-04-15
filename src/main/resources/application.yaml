@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+
+server:
+  port: 8090
+
+management:
+  endpoint:
+    routes:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include:
+        - '*'
+#zuul:
+#  routes:
+#    produto:
+#      path: /produto/**
+#      url: http://localhost:6161/produto
+#      stripPrefix: true
+#    ticket:
+#      path: /ticket/**
+#      url: http://localhost:6060/ticket
+#      stripPrefix: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: false    
+    fetch-registry: true
+    service-url:
+      default-zone: ${EUREKA_URI:http://localhost:8761/eureka}
